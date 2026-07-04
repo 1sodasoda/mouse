@@ -1,6 +1,6 @@
 from pynput import mouse
 import pandas as pd
-import math
+import math, os, datetime
 
 class Logger:
 
@@ -17,8 +17,19 @@ class Logger:
         print(f"Pointer moved to ({x},{y})")
         if not self.first_time:
             print(f"Magnitude: {math.sqrt((x-self.prevx)^2+(y-self.prevy)^2)} | Direction: {math.atan2((y-self.prevy), (x-self.prevx))}")
+            data = pd.DataFrame({
+                'x': [x],
+                'y': [y],
+                'Magnitude': [math.sqrt((x-self.prevx)^2+(y-self.prevy)^2)],
+                'Direction': [math.atan2((y-self.prevy), (x-self.prevx))],
+            })
+            if os.path.exists(file):
+                data.to_csv(file, mode='a', header=False, index=False)
+            else:
+                data.to_csv(file, mode='w', header=True, index=False)
+
         else:
-            self.first_time = false;
+            self.first_time = false
         self.prevx = x
         self.prevy = y
 
