@@ -15,6 +15,7 @@
           (python3.withPackages (ps: with ps; [
             pynput
             pandas
+            matplotlib
           ]))
           python3
         ];
