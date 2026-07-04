@@ -14,6 +14,7 @@
         buildInputs = with pkgs; [
           (python3.withPackages (ps: with ps; [
             pynput
+            pandas
           ]))
           python3
         ];
