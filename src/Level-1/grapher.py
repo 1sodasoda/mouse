@@ -1,12 +1,16 @@
 import matplotlib.pyplot as plot
 import pandas as pd
 
-class plotter:
+class Plotter:
 
     def __init__(self, file):
         self.file = file
-        df = pd.read_csv(file)
+        self.df = pd.read_csv(file)
 
     def load_pos(self):
-        df.plot(x='x', y='y')
+        self.df.plot(x='x', y='y')
+        plot.show()
+
+    def load_mag(self):
+        self.df.plot(x='Magnitude', y='Direction')
         plot.show()
