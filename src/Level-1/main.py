@@ -4,7 +4,14 @@ if __name__ == "__main__":
     print(f"1 for logging, 2 for graphing")
     inp = input()
     if inp == "1":
-        l = logger.Logger(f"./logs/{str(datetime.datetime.now())}.csv")
+        print(f"custom name? y/n")
+        inp = input()
+        if inp == "y":
+            print(f"enter name")
+            inp = input()
+            l = logger.Logger(f"./logs/{inp}.csv")
+        else:
+            l = logger.Logger(f"./logs/{str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))}.csv")
         l.start_logger()
     else:
         print(f"enter file name")

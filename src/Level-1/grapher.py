@@ -9,6 +9,7 @@ class Plotter:
 
     def load_pos(self):
         self.df.plot(x='x', y='y')
+
         plot.show()
 
     def load_mag(self):
