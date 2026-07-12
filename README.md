@@ -24,3 +24,4 @@ However, this could also be from how the circle test was involving a lot of dire
 
 Week 2
 
+So I decided to make a dedicated logger 
