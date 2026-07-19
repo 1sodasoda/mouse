@@ -21,12 +21,13 @@ if __name__ == "__main__":
             if chosen:
                 g = grapher.Plotter(f"./logs/{chosen}.csv")
                 mode = tui.pick(["position (x/y)", "vector (mag/dir)"], "Plot mode")
-                kind = tui.pick(["none", "ma", "ema", "lpf"], "Filter")
+                kind = tui.pick(["none", "ma", "ema", "lpf", "kf", "all"], "Filter")
                 kind = None if kind in (None, "none") else kind
                 param = None
-                if kind:
+                if kind and kind != "all":
                     raw = input(
-                        "param (blank = default: ma=window5, ema=alpha0.2, lpf=cutoff5Hz): "
+                        "param (blank = default: ma=window5, ema=alpha0.2, "
+                        "lpf=cutoff5Hz, kf=measvar50): "
                     ).strip()
                     if raw:
                         param = int(raw) if kind == "ma" else float(raw)
