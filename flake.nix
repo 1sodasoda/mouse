@@ -16,6 +16,7 @@
             pynput
             pandas
             matplotlib
+            scikit-learn
           ]))
           python3
         ];
