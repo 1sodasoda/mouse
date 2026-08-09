@@ -1,0 +1,16 @@
+log,model,r2_x,r2_y
+circle,lr_y_on_x,0.0373,
+circle,rf_y_on_x,0.1338,
+circle,lr_param_t,0.3526,0.3168
+circle,rf_param_t,0.9997,0.9997
+circle,rf_features,0.9997,0.9998
+uturn2,lr_y_on_x,0.8992,
+uturn2,rf_y_on_x,0.9036,
+uturn2,lr_param_t,0.0051,0.0015
+uturn2,rf_param_t,0.9997,0.9997
+uturn2,rf_features,0.9995,0.9997
+flicktopositions,lr_y_on_x,0.0025,
+flicktopositions,rf_y_on_x,0.3006,
+flicktopositions,lr_param_t,0.0003,0.0109
+flicktopositions,rf_param_t,0.8382,0.9865
+flicktopositions,rf_features,0.6903,0.9806

@@ -1,0 +1,16 @@
+log,filter,reach_pct_of_raw,jitter_pct_of_raw
+circle,ma,99.9,15
+circle,ema,99.9,16
+circle,lpf,97.7,95
+circle,kf,87.1,32
+circle,kf2,104.3,44
+uturn2,ma,99.9,21
+uturn2,ema,100.0,21
+uturn2,lpf,100.0,337
+uturn2,kf,100.0,10
+uturn2,kf2,100.0,21
+flicktopositions,ma,99.9,27
+flicktopositions,ema,99.7,26
+flicktopositions,lpf,98.6,439
+flicktopositions,kf,81.1,111
+flicktopositions,kf2,101.1,190

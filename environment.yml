@@ -1,0 +1,9 @@
+name: mouse
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - pynput
