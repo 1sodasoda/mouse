@@ -17,6 +17,7 @@
             pandas
             matplotlib
             scikit-learn
+            torch          # CPU build on aarch64-darwin (MPS may be available)
           ]))
           python3
         ];
