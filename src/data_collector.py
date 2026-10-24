@@ -23,6 +23,9 @@ from etc import tui
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA_RAW = os.path.join(HERE, "..", "data", "raw")
 
+# Pause this long (ms) and the recording rolls to a new segment file.
+IDLE_MS = 300
+
 # (folder, on-screen instruction)
 GESTURES = [
     ("line",   "Draw straight lines / flick back and forth in a line."),
@@ -33,7 +36,7 @@ GESTURES = [
 INSTRUCTIONS = dict(GESTURES)
 
 
-def record_one(gesture, rep, counter):
+def record_one(gesture, rep, counter, idle_ms=IDLE_MS):
     print(f"\n=== {gesture.upper()}  (rep {rep}) ===")
     print(INSTRUCTIONS[gesture])
     input("Press Enter to START recording...")
@@ -42,16 +45,22 @@ def record_one(gesture, rep, counter):
     path = os.path.join(DATA_RAW, gesture, f"{gesture}_{stamp}_{counter}.csv")
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
-    log = Logger(path)
+    log = Logger(path, idle_ms=idle_ms or None)
     log.start_logger()
-    input(">> recording... perform the gesture, then press Enter to STOP.\n")
+    hint = (f" (pausing {idle_ms} ms splits a new segment)" if idle_ms else "")
+    input(f">> recording...{hint} perform the gesture, "
+          "then press Enter to STOP.\n")
     log.stop_logger()
 
-    if os.path.exists(path):
-        samples = sum(1 for _ in open(path)) - 1  # minus header
-        print(f"   saved {samples} samples -> {os.path.relpath(path, HERE)}")
-    else:
+    if not log.segments:
         print("   no movement captured (nothing saved)")
+        return
+
+    for seg in log.segments:
+        samples = sum(1 for _ in open(seg)) - 1  # minus header
+        print(f"   saved {samples:5d} samples -> {os.path.relpath(seg, HERE)}")
+    if len(log.segments) > 1:
+        print(f"   ({len(log.segments)} segments -- pauses split the take)")
 
 
 def main():
@@ -70,11 +79,14 @@ def main():
     raw = input("reps per gesture (blank = loop until Ctrl+C): ").strip()
     reps = int(raw) if raw.isdigit() else None
 
+    raw = input(f"idle split in ms (blank = {IDLE_MS}, 0 = off): ").strip()
+    idle_ms = int(raw) if raw.isdigit() else IDLE_MS
+
     counter = itertools.count(1)
     rounds = range(1, reps + 1) if reps else itertools.count(1)
     for rep in rounds:
         for gesture in order:
-            record_one(gesture, rep, next(counter))
+            record_one(gesture, rep, next(counter), idle_ms)
 
     print("\nAll requested samples collected.")
 
