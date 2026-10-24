@@ -1,0 +1,6 @@
+model,params,mean_px,mean_px_min,mean_px_max,median_px,win_pct_vs_constvel,seeds_beating_constvel,n_seeds
+gru,3618,5.3642,4.6933,6.0951,2.0223,55.2,3,3
+lstm,4802,5.6502,4.7375,6.4954,2.1467,51.8,3,3
+mlp_res,8194,6.1394,5.1505,7.1426,2.7856,40.5,3,3
+constant velocity,0,7.0194,,,2.2762,,,3
+zero,0,16.8898,,,7.4761,,,3
