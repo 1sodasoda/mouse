@@ -18,6 +18,7 @@
             matplotlib
             scikit-learn
             torch          # CPU build on aarch64-darwin (MPS may be available)
+            torchvision    # datasets/transforms for the PyTorch tutorials
           ]))
           python3
         ];
