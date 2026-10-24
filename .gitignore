@@ -1,0 +1,7 @@
+# Downloaded tutorial datasets (FashionMNIST / MNIST) -- fetched on demand by
+# src/tutorials/mnist_quickstart.py, ~148 MB, not project data.
+data/tutorials/
+
+# Python bytecode
+__pycache__/
+*.pyc
